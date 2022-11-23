@@ -2,5 +2,7 @@
 
 for i in *.mkv;
 do
-  
+    rclone copy "$i" /root/tmp -P;
+    mkvpropedit /root/tmp/"$i" --edit track:s1 --set language=chi;
+    rclone move /root/tmp/"$i" ./ -P;
 done
